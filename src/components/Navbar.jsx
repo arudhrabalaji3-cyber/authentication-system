@@ -1,13 +1,15 @@
 
+import "./Navbar.css";
 function Navbar(props)
 {
     return(
-        <>
+        <div className="nav">
         <h1>AUTHENTICATION SYSTEM</h1>
-        <button onClick={()=>props.changePage("Login")}>Login</button>
-        <button onClick={()=>props.changePage("Register")}>Register</button>
-        console.log(props);
-        </>
+        <div className="buttoncontainer">
+        <button  className="navbutton" onClick={()=>props.changePage("Login")}>Login</button>
+        <button  className="navbutton" onClick={()=>props.changePage("Register")}>Register</button>
+        </div>
+        </div>
     );
 }
 
