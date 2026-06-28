@@ -17,13 +17,16 @@ function Login(){
         setPassword(event.target.value);
     }
 
-    function handleSubmit(event){
+    async function handleSubmit(event){
         event.preventDefault();
         if(username===""||password.length<6)
         {
             setError("Error:enter both usernameand password. password length should atleast be 6")
         }
         else{
+            
+
+            
             setIsLoading(true);
             setError("");
             setTimeout(()=>{setIsLoading(false);
@@ -32,9 +35,25 @@ function Login(){
             },2000);
         console.log("Username:", username); 
         console.log("Password:", password);
+        const response=await fetch("http://localhost:5000/login",{
+            method: "POST",
+            headers:{
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify({
+                username,
+                password
+            })
+        });
+        const data=await response.json();
+        console.log(data);
         
-        }
-    }
+        
+        
+            setError(data.message);
+        
+        
+    }}
 
     return(
         <form className="form-container" onSubmit={handleSubmit}>
